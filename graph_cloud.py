@@ -17,7 +17,7 @@ def get_graph1():
 
 def get_graph2():
     print("graph_cloud:graph2")
-    graph2= Graph1(langchainLib)
+    graph2= Graph2(langchainLib)
     graph2.set_thread("youht","default")
     graph2.set_nodes_llm_config(("LLM.ZHIPU",None))
     graph = graph2.get_graph()
