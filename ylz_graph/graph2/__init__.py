@@ -7,7 +7,6 @@ from langgraph.prebuilt import tools_condition
 class Graph2(GraphLib):
     def __init__(self,langchainLib):
         super().__init__(langchainLib)
-        self.set_nodes_llm_config()
         self.set_websearch_tool('DUCKDUCKGO')
         self.set_tools()
         self.set_tools_executor()
