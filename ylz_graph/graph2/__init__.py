@@ -9,7 +9,7 @@ class Graph2(GraphLib):
         super().__init__(langchainLib)
         self.set_websearch_tool('DUCKDUCKGO')
         self.set_tools()
-        self.set_tools_executor()
+        self.set_tools_executor(self.tools)
     def get_graph(self) -> CompiledStateGraph:
 
         workflow = StateGraph(MessagesState)
