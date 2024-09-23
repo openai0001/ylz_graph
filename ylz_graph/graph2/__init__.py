@@ -24,8 +24,8 @@ class Graph2(GraphLib):
     def human_action(self, graph, thread_id=None):
         return super().human_action(graph, thread_id)
     
-    async def robot(self,state:MessagesState):
+    def robot(self,state:MessagesState):
         self.llm = self.get_node_llm()
         self.llm_bind_tools = self.llm.bind_tools(self.tools)
-        res  = await self.llm_bind_tools.ainvoke(state["messages"])
+        res  = self.llm_bind_tools.invoke(state["messages"])
         return {"messages":[res]}        
