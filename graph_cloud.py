@@ -7,7 +7,7 @@ Config.init('ylz_graph')
 langchainLib = LangchainLib()
 
 def get_graph1():
-    print("graph_cloud:life")
+    print("graph_cloud:graph1")
     graph1= Graph1(langchainLib)
     graph1.set_thread("youht","default")
     graph1.set_nodes_llm_config(("LLM.ZHIPU",None))
