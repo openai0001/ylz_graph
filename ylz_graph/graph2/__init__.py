@@ -10,11 +10,12 @@ class Graph2(GraphLib):
         self.set_websearch_tool('TAVILY')
         self.tools = [self.websearch_tool]
         self.set_tools_executor(self.tools)
-        self.llm = self.get_node_llm()
-        self.llm_bind_tools = self.llm.bind_tools(self.tools)
 
     def get_graph(self) -> CompiledStateGraph:
-        graph = create_react_agent(self.llm,self.tools)
+        llm = self.get_node_llm()
+        print("[LLM]",llm)
+        print("[TOOLS]",self.tools)
+        graph = create_react_agent(llm,self.tools)
         # workflow = StateGraph(MessagesState)
         # workflow.add_node("robot",self.robot)
         # workflow.add_node("tools",self.tool_node)
