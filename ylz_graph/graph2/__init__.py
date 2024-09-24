@@ -8,25 +8,21 @@ from langchain_community.utilities.tavily_search import TavilySearchAPIWrapper
 from langchain_core.runnables import RunnableLambda
 from langchain_core.tools import tool
 
-@tool
-def _wrapTavily(query):
-    '''
-    从互联网上查询query，返回字符串结果
-    '''
-    search = TavilySearchAPIWrapper(tavily_api_key="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")
-    tool = TavilySearchResults(api_wrapper=search,max_results=2)
-    tool_doc = tool | RunnableLambda(lambda doc:str(doc), name="Tavily2Document")
-    res = tool_doc.invoke(query)
-    return res
-
 class Graph2(GraphLib):
     def __init__(self,langchainLib):
         super().__init__(langchainLib)
         #self.set_websearch_tool('TAVILY')
         #self.set_tools_executor(self.tools)
-        res = _wrapTavily("北京天气如何?")
+        search = TavilySearchAPIWrapper(tavily_api_key="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")
+        tool = TavilySearchResults(api_wrapper=search,max_results=2,
+                                   search_depth="advanced",
+                                    include_answer=True,
+                                    include_raw_content=True,
+                                    include_images=True,)
+        tool_doc = tool | RunnableLambda(lambda doc:str(doc), name="Tavily2Document")
+        res = tool.invoke("北京天气如何?")
         print(res,type(res))
-        self.tools = [_wrapTavily]
+        self.tools = [tool]
         
     def get_graph(self) -> CompiledStateGraph:
         llm = self.get_node_llm()
