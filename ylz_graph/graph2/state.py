@@ -1,5 +1,6 @@
 from langgraph.graph import add_messages
 from typing import Annotated
+
 class State():
-    messagesA: Annotated[list,add_messages]
-    resultA: str
+    messagesB: Annotated[list,add_messages]
+    resultB: str
