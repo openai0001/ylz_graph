@@ -5,6 +5,8 @@ from ylz_graph.graph1 import Graph1
 from ylz_graph.graph2 import Graph2
 from ylz_graph.graph3 import Graph3
 
+from ylz_utils.langchain.graph.test_graph.function import FunctionGraph
+
 Config.init('ylz_graph')
 langchainLib = LangchainLib()
 
@@ -32,8 +34,13 @@ def get_graph3():
     graph = graphLib.get_graph()
     return graphLib,graph
 
-graph1 = get_graph1()
-graph2 = get_graph2()
-graphLib,graph3 = get_graph3()
+# graph1 = get_graph1()
+# graph2 = get_graph2()
+# graphLib,graph3 = get_graph3()
 
-graphLib.graph_test(graph3,"我爱中国")
+# graphLib.graph_test(graph3,"我爱中国")
+
+graphLib = FunctionGraph(langchainLib)
+graphTest = graphLib.get_graph()
+
+#graphLib.graph_test(graphTest,"我叫张三",config={"configurable":{"thread_id":"youht-default","user_id":"youht","llm_key":"LLM.DEEPBRICKS"}})
